@@ -17,21 +17,25 @@ const maintainNumLength = num => {
     return num < 10 ? '0' + num : num
 }
 
+
 /**
- * @param timeStamp,
+ * @param timeStamp
+ * @param format, datetime or date only
  * @param includeYear, whether show year as part of the output.
  * @returns {string} formatted date output
  */
-const getFormattedDate = (timeStamp, includeYear = true) => {
+const getFormattedDate = (timeStamp, format = 'datetime', includeYear = true) => {
     const d = new Date(timeStamp)
     const year = d.getFullYear()
     const month = maintainNumLength(d.getMonth() + 1)
-    const date = maintainNumLength(d.getDate())
-    const hours = maintainNumLength(d.getHours())
-    const minutes = maintainNumLength(d.getMinutes())
-    const second = maintainNumLength(d.getSeconds())
+    const day = maintainNumLength(d.getDate())
+    const hour = maintainNumLength(d.getHours())
+    const minute = maintainNumLength(d.getMinutes())
     let output = includeYear ? year + '-' : ''
-    output = output + month + '-' + date + ' ' + hours + ':' + minutes
+    output = `${output}${month}-${day}`
+    if (format === 'datetime') {
+        output = `${output} ${hour}:${minute}`
+    }
     return output
 }
 
@@ -62,12 +66,15 @@ export const getRelativeTime = (timeStamp) => {
     // between (1 day) to (29days 23 hours 59 minutes 59 seconds)
     else if (diff >= 86400 && diff < 86400 * 30) output = Math.floor(diff / (60 * 60 * 24)) + text.day + append
     // between (1 month) to (1 year).
-    else if (diff >= 86400 * 30 && diff <= 86400 * 365 && IS_EARLY) output = getFormattedDate(timeStamp, false)
-    else output = getFormattedDate(timeStamp)
+    else if (diff >= 86400 * 30 && diff <= 86400 * 365 && IS_EARLY) output = getFormattedDate(timeStamp, 'datetime', false)
+    else output = getFormattedDate(timeStamp, 'datetime')
     return output
 }
 
-export default function (timestamp) {
-    return getRelativeTime(timestamp)
+export default function (timestamp, format = 'relative') {
+    if (format === 'date' || format === 'datetime') {
+        return getFormattedDate(timestamp, format)
+    } else {
+        return getRelativeTime(timestamp)
+    }
 }
-
