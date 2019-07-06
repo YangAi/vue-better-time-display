@@ -14,7 +14,7 @@ Vue.use(BetterTime)
 
 ```html
 <template>
-    // x days ago
+    // return "x days ago"
     <better-time :time="time" />
 </template>
 
@@ -39,6 +39,6 @@ params | type | description | Default
 time(required) | Number, String |the time you want to transformed |
 tag | String | html tag | span
 type | String |There are three output type you could choose: relative, datetime or date | relative
-interval | Number | interval for data refresh | 60
+interval | Number | (seconds)Interval for data refres, | 60
 
 
