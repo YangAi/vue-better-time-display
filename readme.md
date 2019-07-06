@@ -30,7 +30,7 @@ export default {
 ```
 
 ## localized
-you can localized the component into your language by modify config.js
+you can localized the component into your language by modify language.js
 
 
 ## params
@@ -38,7 +38,7 @@ params | type | description | Default
 ---- | ---- | ---- | ----
 time(required) | Number, String |the time you want to transformed |
 tag | String | html tag | span
-type | String | relative, datetime or date | relative
-interval | Number | interval of data refresh | 60
+type | String |There are three output type you could choose: relative, datetime or date | relative
+interval | Number | interval for data refresh | 60
 
 
