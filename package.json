@@ -13,8 +13,7 @@
         "url": "git+https://github.com/YangAi/vue-better-time-display.git"
       },
       "keywords": [
-        "noty",
-        "snackbar",
+        "time",
         "vue"
       ],
       "author": "Yang Ai",
