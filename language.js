@@ -1,4 +1,9 @@
 const language = 'zh'
+
+function formatTime (time, type) {
+  return ` ${time} ${type}${time > 1 ? 's' : ''}`
+}
+
 const languageText = {
   zh: {
     before: '前',
@@ -10,14 +15,14 @@ const languageText = {
     day: '天'
   },
   en: {
-    before: ' before',
-    after: ' after',
+    before: ' Ago',
+    after: ' After',
     justNow: 'Just Now',
-    second: ' Seconds',
-    minute: ' Minutes',
-    hour: ' Hours',
-    day: ' Days'
-  },
+    second: val => formatTime(val, 'Second'),
+    minute: val => formatTime(val, 'Minute'),
+    hour: val => formatTime(val, 'Hour'),
+    day: val => formatTime(val, 'Day')
+  }
 }
 
 export default languageText[language] || languageText[0]
