@@ -2,6 +2,8 @@
 
 A time-display components. Make times look more readable and user-friendly.
 
+tooltips is based on vuetify.
+
 ## usage
 
 ```js
